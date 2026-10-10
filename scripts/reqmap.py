@@ -27,12 +27,12 @@ START = "<!-- reqmap:start -->"
 END = "<!-- reqmap:end -->"
 INSTRUCTIONS = """<!-- reqmap:start -->
 ## Project requirement memory (reqmap)
-- At the beginning of a task involving product functionality, read `.reqmap/INDEX.md` if it exists; open only relevant requirement files and `.reqmap/product.md` when needed.
-- Treat `.reqmap/catalog.json` as the source of truth. Use the reqmap CLI for changes; never treat an inferred relationship or unverified progress as fact.
-- Before adding or changing a requirement, compare existing requirements and examine potential overlaps, dependencies and conflicts. Report plausible impacts with supporting reasons, distinguishing proposed links from confirmed dependencies.
-- When development concerning a requirement finishes, **ask the user what its status is** (in progress / pending acceptance / completed / deprecated). Do NOT update status until the user expressly confirms, and quote that confirmation in the status command.
-- Record changed product decisions and their reasons with `revise`. Do not save "what to do next" unless the user explicitly asks.
-- This memory is for product requirements only; do not store technical architecture, code maps, arbitrary session logs, or secrets.
+- At the beginning of every task involving this product's features, requirements, or feature development, read `.reqmap/INDEX.md` if it exists, then only the relevant requirement pages. This applies even when the user does not mention `$reqmap`.
+- After the user invokes `$reqmap` once in a conversation, continue tracking product requirements throughout that conversation without requiring `$reqmap` again. Stay scoped to this project; switch roots and reload when the project changes. This is agent behavior, not an automatic background watcher or a guaranteed Codex event hook.
+- Treat `.reqmap/catalog.json` as canonical. On a clearly accepted new feature, run `suggest`, review existing requirements, and `add` if not already covered. On an explicit requirement change, run `impact`, explain effects, and `revise` with the user's reason. Record defensible new links as **proposed**, not confirmed. Do not save brainstorming, hypothetical ideas, questions, or unapproved alternatives as decided requirements.
+- Throughout feature implementation, track the affected REQ IDs; do not mark a feature complete from code/tests alone. After development finishes, **ask the user for the status of each affected feature**. Do not update any status until the user explicitly confirms; then run `status --user-confirmation` using the user's actual words, including when the confirmation arrives in a later message without `$reqmap`.
+- When the user asks about current capabilities or change impact, use `list` / `show` / `impact` proactively; never present inferred or unverified progress as confirmed. Do not ask for status after a discussion with no implementation.
+- Preserve requirement design reasons and evolution with `revise`; do not save next-step plans, technical architecture, code maps, session transcripts, personal data, or secrets. Respect an explicit user request to stop tracking during the current conversation.
 <!-- reqmap:end -->"""
 
 class ReqmapError(Exception):

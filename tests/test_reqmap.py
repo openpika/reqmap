@@ -36,6 +36,9 @@ class ReqmapTests(unittest.TestCase):
         self.assertIn("Do not delete this", ag)
         self.assertEqual(ag.count("<!-- reqmap:start -->"), 1)
         self.assertIn(".reqmap/INDEX.md", ag)
+        self.assertIn("without requiring `$reqmap` again", ag)
+        self.assertIn("even when the user does not mention `$reqmap`", ag)
+        self.assertIn("do not mark a feature complete from code/tests alone", ag)
         self.assertIn("Already initialized", self.cli("init", "--name", "Oops", ok=False))
         self.assertEqual(self.root.joinpath("AGENTS.md").read_text(), ag)
 
