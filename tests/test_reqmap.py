@@ -43,7 +43,7 @@ class ReqmapTests(unittest.TestCase):
         self.assertEqual(self.root.joinpath("AGENTS.md").read_text(), ag)
 
     def test_install_agents_upgrades_existing_memory_without_erasing_user_rules(self):
-        self.root.joinpath("AGENTS.md").write_text("# Custom\\n\\nKeep my rules.\\n")
+        self.root.joinpath("AGENTS.md").write_text("# Custom\n\nKeep my rules.\n")
         self.init()
         agents = self.root.joinpath("AGENTS.md")
         agents.write_text(agents.read_text().replace("without requiring `$reqmap` again", "outdated marker"))
