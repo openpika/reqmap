@@ -46,7 +46,7 @@ If the Skill is installed at a nonstandard location, resolve the bundled `script
 
 ## Initialize an existing project or a new one
 
-- Run `init --name "Product" --description "..."` once. It creates `.reqmap/` plus a delimited section in root `AGENTS.md`; preserve existing instructions.
+- Run `init --name "Product" --description "..."` once. It creates `.reqmap/` plus a delimited section in root `AGENTS.md`; preserve existing instructions. For projects initialized with an older reqmap release, run `install-agents` once to refresh only the reqmap block without overwriting the catalog or other instructions.
 - Analyze the user's supplied requirements **one by one**, grouping only when the same product capability is clearly described. Before `add`, consult `INDEX.md` and run `suggest` against the proposed title and summary.
 - A requirement is a user-visible, durable product capability or rule, not one task, file, API, or sprint. Split independent capabilities. Preserve the user's actual intent, avoid inventing a feature status or unmentioned business rule.
 - Use `add --title ... --summary ... --why ... [--rule ...]`. `--why` should express the business problem and tradeoff. If unknown, write "待确认：用户尚未说明设计原因"; don't fabricate a decision.

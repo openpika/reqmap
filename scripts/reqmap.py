@@ -17,7 +17,7 @@ from collections import deque
 from pathlib import Path
 from typing import Any
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 SCHEMA = 1
 STATUSES = ("defined", "in_progress", "pending_acceptance", "done", "deprecated")
 REL_TYPES = ("depends_on", "overlaps", "conflicts_with", "related_to")
@@ -385,6 +385,7 @@ def parser() -> argparse.ArgumentParser:
     s.add_argument("--name", required=True)
     s.add_argument("--description", default="")
     s.add_argument("--no-agents", action="store_true")
+    s = command("install-agents", "Install or refresh reqmap instructions in existing AGENTS.md")
     s = command("add", "Record a requirement (initial status is defined)")
     s.add_argument("--title", required=True)
     s.add_argument("--summary", required=True)
@@ -438,6 +439,10 @@ def parser() -> argparse.ArgumentParser:
 def run(args: argparse.Namespace) -> Any:
     if args.command == "init":
         return init(args)
+    if args.command == "install-agents":
+        load(args.root)  # Never create a new project by accident.
+        install_agents(args.root)
+        return {"agents_updated": True, "path": str(args.root / "AGENTS.md")}
     if args.command == "add":
         return add(args)
     if args.command == "revise":

@@ -25,6 +25,18 @@ cp -R reqmap ~/.codex/skills/reqmap
 
 重新启动 Codex 或新建会话后，即可使用 `$reqmap`。内置 CLI 要求 **Python 3.9+**，仅依赖 Python 标准库。
 
+
+### 已安装用户如何升级
+
+如果之前已经安装过 `reqmap`，先更新 Skill，然后到**已初始化的产品项目根目录**刷新 `AGENTS.md` 规则：
+
+```bash
+git -C ~/.codex/skills/reqmap pull --ff-only
+python3 ~/.codex/skills/reqmap/scripts/reqmap.py install-agents
+```
+
+`install-agents` 只更新 `AGENTS.md` 内的 reqmap 规则区块，不会重建项目、覆盖原有需求或删除其他项目指令。若最初使用 ZIP 安装且没有 Git 仓库，请重新复制新版 Skill 文件夹，再运行第二条命令。重新开启 Codex 会话，以确保加载新版 Skill。
+
 ## 初始化项目需求记忆
 
 在**你的产品项目根目录**执行：
