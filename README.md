@@ -16,14 +16,12 @@
 ## Install (Codex)
 
 ```bash
-git clone https://github.com/YOUR_NAME/reqmap.git
+git clone https://github.com/openpika/reqmap.git
 mkdir -p ~/.codex/skills
 cp -R reqmap ~/.codex/skills/reqmap
 ```
 
 Or download/unzip this project, then copy it to `~/.codex/skills/reqmap`. Restart Codex or start a new session to discover `$reqmap`. The Skill's Python CLI requires Python 3.9+ and uses only the standard library.
-
-**The repository URL above is a placeholder until the repository is published.**
 
 ## Create a requirement memory for your project
 
